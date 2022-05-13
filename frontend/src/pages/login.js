@@ -1,10 +1,15 @@
 import { useState } from "react";
 import "../styles/login.css";
 import metaLogo from "../assets/meta-logo.png"
+import authenticateUser from '../services/signin'
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  async function singIn (){
+    await authenticateUser(email, password);
+  }
 
   return (
     <div className="container">
@@ -40,9 +45,9 @@ function Login() {
               </div>
 
               <div className="container-login-form-btn">
-                <button className="login-form-btn">Login</button>
+                <button onClick={singIn} className="login-form-btn" type="button">Login</button>
                 <span className="txt1">Não possui conta? </span>
-                <a className="txt2" href="/">
+                <a className="txt2" href="/register">
                   Criar conta
                 </a>
               </div>
