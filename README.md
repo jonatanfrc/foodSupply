@@ -2,7 +2,7 @@
 
 Projeto Integrador - Unimar
 
-O FoodSupply é um software desenvolvido com intuito de ajudar os empreendedores a encontrarem melhores fornecedores de forma fácil.
+O FoodSupply é um software desenvolvido com intuito de ajudar os empreendedores a encontrarem melhores fornecedores de forma fácil e ágil.
 
 ## Comandos 
 
