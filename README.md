@@ -6,9 +6,9 @@ O FoodSupply é um software desenvolvido com intuito de ajudar os empreendedores
 
 ## Comandos 
 
-npm install / yarn install
+* npm install / yarn install
 
-npm run start
+* npm run start
 
 ## Desenvolvedores
 
