@@ -12,6 +12,6 @@ npm run start
 
 ## Desenvolvedores
 
-Vitor Zafra - https://github.com/vitorzf
-Rian Imafuku - https://github.com/RianImafuku
-Jonatan Rocha - https://github.com/jonatanfrc
+* Vitor Zafra - https://github.com/vitorzf
+* Rian Imafuku - https://github.com/RianImafuku
+* Jonatan Rocha - https://github.com/jonatanfrc
