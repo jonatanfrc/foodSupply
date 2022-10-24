@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import api from "../../../services/produtos"
 import { CircularProgress, Button } from '@mui/material';
 import ProductItem from "./productItem"

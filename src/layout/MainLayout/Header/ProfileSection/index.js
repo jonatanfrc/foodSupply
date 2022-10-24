@@ -196,7 +196,7 @@ const ProfileSection = () => {
                                         <Divider style={{marginTop: '10px'}}/>
                                     </Box>
                                     <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
-                                        <Box sx={{ p: 2 }}>
+                                        <Box style={{ paddingTop: '0px' }} sx={{ p: 2 }}>
                                             {/* <UpgradePlanCard />
                                             <Divider />
                                             <Card
@@ -266,7 +266,7 @@ const ProfileSection = () => {
                                                     <ListItemIcon>
                                                         <IconSettings stroke={1.5} size="1.3rem" />
                                                     </ListItemIcon>
-                                                    <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
+                                                    <ListItemText primary={<Typography variant="body2">Configurações de conta</Typography>} />
                                                 </ListItemButton>
                                                 {/* <ListItemButton
                                                     sx={{ borderRadius: `${customization.borderRadius}px` }}
