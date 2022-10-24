@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
+import CartProvider from "../src/views/pages/produtos/context/cart";
 
 // routing
 import Routes from 'routes';
@@ -22,7 +23,9 @@ const App = () => {
             <ThemeProvider theme={themes(customization)}>
                 <CssBaseline />
                 <NavigationScroll>
-                    <Routes />
+                    <CartProvider >
+                        <Routes />
+                    </CartProvider>
                 </NavigationScroll>
             </ThemeProvider>
         </StyledEngineProvider>

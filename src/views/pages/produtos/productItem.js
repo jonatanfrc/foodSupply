@@ -1,61 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // import "../styles/cart.css";
 import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import api from "../../../services/produtos"
 import { CardActionArea, Grid } from '@mui/material';
-import { CircularProgress, Button } from '@mui/material';
+import { CartContext } from './context/cart';
+import { Button } from '@mui/material';
 
 const ProductItem = ({ products}) => {
   const [price, setPrice] = useState(0);
   const [cart, setCart] = useState([]);
-
-
-  const handleRemove = (id) => {
-    const arr = products.filter((item) => item.id !== id);
-    setCart(arr);
-    handlePrice();
-  };
-
-  const Comprar = () => {
-    
-  };
-
-
-  const handleChange = (item, d) => {
-    let addCart = cart;
-    addCart.push(item);
-    let itemPrice = 0;
-    
-    addCart.forEach(item=>{
-        itemPrice += item.preco;
-        return itemPrice;
-    })
-    console.log('teste', itemPrice);
-    setPrice(itemPrice);
-    setCart(addCart);
-    localStorage.setItem('cart', cart);
-};
-
-  const handlePrice = () => {
-      console.log('cart2', cart)
-    let ans = 0;
-    products.map((item) => (ans += item.amount * item.price));
-    setPrice(ans);
-  };
+  const {
+    productsCart = [],
+    addProducToCart,
+    removeProductToCart,
+    clearCart,
+  } = useContext(CartContext);
 
   useEffect(() => {
-      console.log('cart', cart);
-    handlePrice();
-  }, [cart]);
+    let value = 0;
+    console.log('productsCart', productsCart);
+
+    productsCart.forEach(element => {
+      value += element.qtd * element.value;
+    });
+
+    setPrice(value);
+  }, [productsCart]);
 
   return (
     <article>
       {products.map((item, index) => (
         <div className="cart_box" key={item.id}>
           <Card key={index} sx={{ maxWidth: "100%", marginBottom: '10px' }}>
-            <CardActionArea >
                 <CardContent>
                     <div>
                         <div className='div-fornecedor-option'>
@@ -71,28 +49,21 @@ const ProductItem = ({ products}) => {
                         </div>
 
                         <div style={{ display: "inline-block"}}>
-                            <div style={{ display: "inline-block" }}>
-                                <Button onClick={() => handleChange(item, 1)}>+</Button>
+                            <div>
+                                <Button onClick={() => addProducToCart(item.id, item.preco)}>+</Button>
+                            </div>
+                            <div>
+                                <Button onClick={() => removeProductToCart(item.id)}>-</Button>
                             </div>
                        
                         </div>
-                        
-                        {/* <div className='div-fornecedor-option' style={{ marginLeft: '35vw'}}>
-                            <div className='div-fornecedor-option'>
-                                <div className='teste'>
-                                    <Button>+</Button>
-                                </div>
-                                <div>
-                                    <Button>-</Button>
-                                </div>
-                            </div>
-                            <div className='div-fornecedor-option'>
-                                <Typography>1</Typography>
-                            </div>
-                        </div> */}
+                        <div style={{ display: "inline-block"}}>
+                          <span>{ productsCart.find(product => {if(product.id == item.id){
+                            return product.qtd }}
+                            )}</span>
+                        </div>
                     </div>
                 </CardContent>
-            </CardActionArea>
         </Card>
        
         </div>
@@ -100,9 +71,12 @@ const ProductItem = ({ products}) => {
       <div className="total">
         <span>Total do seu carrinho: </span>
         <span>R$ - {price == undefined ? 0 : price}</span>
-        <div>
-            <Button onClick={() => Comprar()}  style={{ backgroundColor:'black' }}>Comprar</Button>
-        </div>
+        {/* <div>
+            <Button onClick={() => Buy()}  style={{ backgroundColor:'black' }}>Comprar</Button>
+        </div> */}
+      </div>
+      <div>
+          <Button onClick={() => clearCart()}  style={{ backgroundColor:'black' }}>Limpar carrinho</Button>
       </div>
     </article>
   );
