@@ -6,8 +6,8 @@ const icons = { IconDashboard, IconUser, IconShoppingCart };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
-const dashboard = {
-    id: 'dashboard',
+const listagens = {
+    id: 'listagens',
     title: 'Páginas',
     type: 'group',
     children: [
@@ -17,14 +17,6 @@ const dashboard = {
             type: 'item',
             url: '/listagem/vendedores',
             icon: icons.IconUser,
-            breadcrumbs: false
-        },
-        {
-            id: 'produtos',
-            title: 'Produtos',
-            type: 'item',
-            url: '/listagem/produtos',
-            icon: icons.IconShoppingCart,
             breadcrumbs: false
         },
         {
@@ -38,4 +30,4 @@ const dashboard = {
     ]
 };
 
-export default dashboard;
+export default listagens;

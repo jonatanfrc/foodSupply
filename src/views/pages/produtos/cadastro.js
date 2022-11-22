@@ -15,8 +15,6 @@ import './style/dashboard.css';
 // material-ui
 import { gridSpacing } from 'store/constant';
 
-// ==============================|| DEFAULT DASHBOARD ||============================== //
-
 const ListagemProduto = () => {
     const [isLoading, setLoading] = useState(true);
     const [categorias, setCategorias] = useState([]);
@@ -37,7 +35,6 @@ const ListagemProduto = () => {
             if(!response.erro){
                 navigate('/listagem/produtos')
             }
-            console.log('response', response);
             setLoading(false)
         }).catch((err) =>{
             console.log('err', err)

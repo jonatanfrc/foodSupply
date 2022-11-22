@@ -6,8 +6,8 @@ const icons = { IconDashboard, IconUser, IconShoppingCart, IconShoppingCartPlus}
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
-const dashboard = {
-    id: 'dashboard',
+const cadastros = {
+    id: 'cadastros',
     title: 'Cadastros',
     type: 'group',
     children: [
@@ -19,7 +19,15 @@ const dashboard = {
             icon: icons.IconShoppingCartPlus,
             breadcrumbs: false
         },
+        {
+            id: 'cadastroEndereco',
+            title: 'Cadastro de Endereço',
+            type: 'item',
+            url: '/cadastro/endereco',
+            icon: icons.IconShoppingCart,
+            breadcrumbs: false
+        }
     ]
 };
 
-export default dashboard;
+export default cadastros;

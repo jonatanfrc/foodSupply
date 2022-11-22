@@ -30,9 +30,8 @@ const Register = () => {
     async function RegisterUser() {
         if(email === "" || username === "" || password === ""){
           // showModal();
-        }else{
+        } else{
           const result = await userAPI.registerUser(email, username, imageName, password);
-          console.log('result', result);
           if(!result.erro){
             localStorage.setItem('token', result.token);
             navigate('/');

@@ -8,9 +8,7 @@ import { CardActionArea, Grid } from '@mui/material';
 import { CartContext } from './context/cart';
 import { Button } from '@mui/material';
 
-const ProductItem = ({ products}) => {
-  const [price, setPrice] = useState(0);
-  const [cart, setCart] = useState([]);
+const ProductItem = ({ products, idVendedor}) => {
   const {
     productsCart = [],
     addProducToCart,
@@ -19,18 +17,20 @@ const ProductItem = ({ products}) => {
   } = useContext(CartContext);
 
   useEffect(() => {
-    let value = 0;
-    console.log('productsCart', productsCart);
+    // if(!!products){
 
-    productsCart.forEach(element => {
-      value += element.qtd * element.value;
-    });
 
-    setPrice(value);
-  }, [productsCart]);
+    //   products.forEach((produto, index) =>{
+    //     products.fotos[index] = JSON.parse(produto.fotos[index]);
+    //   })
+    // }
+    console.log('prodcts', products);
+    console.log('idVendedor', idVendedor);
+  }, [products]);
+
 
   return (
-    <article>
+    <>
       {products.map((item, index) => (
         <div className="cart_box" key={item.id}>
           <Card key={index} sx={{ maxWidth: "100%", marginBottom: '10px' }}>
@@ -50,35 +50,23 @@ const ProductItem = ({ products}) => {
 
                         <div style={{ display: "inline-block"}}>
                             <div>
-                                <Button onClick={() => addProducToCart(item.id, item.preco)}>+</Button>
+                                <Button onClick={() => addProducToCart(item.id, idVendedor, item.preco, item.fotos[0].url)}>+</Button>
                             </div>
                             <div>
                                 <Button onClick={() => removeProductToCart(item.id)}>-</Button>
                             </div>
                        
                         </div>
-                        <div style={{ display: "inline-block"}}>
-                          <span>{ productsCart.find(product => {if(product.id == item.id){
-                            return product.qtd }}
-                            )}</span>
-                        </div>
+                        {/* <div style={{ display: "inline-block"}}>
+                          { productsCart.find(product => product.id == item.id).qtd}
+                        </div> */}
                     </div>
                 </CardContent>
         </Card>
        
         </div>
       ))}
-      <div className="total">
-        <span>Total do seu carrinho: </span>
-        <span>R$ - {price == undefined ? 0 : price}</span>
-        {/* <div>
-            <Button onClick={() => Buy()}  style={{ backgroundColor:'black' }}>Comprar</Button>
-        </div> */}
-      </div>
-      <div>
-          <Button onClick={() => clearCart()}  style={{ backgroundColor:'black' }}>Limpar carrinho</Button>
-      </div>
-    </article>
+    </>
   );
 };
 

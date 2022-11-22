@@ -49,7 +49,7 @@ import api from "./api";
       }
 
       async function getCategories() {
-         return api.get('produtos/categorias')
+         return api.get('produtos/categorias', config)
             .then((res)=>{
                if(!res.data.erro) {
                   return res.data;  
@@ -71,8 +71,9 @@ import api from "./api";
          }
 
       async function getProdutosVendedor(idVendedor) {
-         return api.get('produtos/vendedor/' + idVendedor, )
+         return api.get('produtos/vendedor/' + idVendedor, config)
             .then((res)=>{
+               console.log('entrou', res);
                if(!res.data.erro) {
                   return res.data;  
                } else {
@@ -81,4 +82,4 @@ import api from "./api";
             );
          }
 
-export default {getAllProducts, registerProduct, getCategories, getUnidadesMedida, getProdutosVendedor};
+ export default {getAllProducts, registerProduct, getCategories, getUnidadesMedida, getProdutosVendedor};

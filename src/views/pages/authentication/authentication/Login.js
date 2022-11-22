@@ -13,7 +13,7 @@ import AuthWrapper1 from '../AuthWrapper1';
 
 // ================================|| AUTH3 - LOGIN ||================================ //
 
-const Login = () => {
+export default function Login() {
     const theme = useTheme();
 
     const [email, setEmail] = useState("");
@@ -23,11 +23,11 @@ const Login = () => {
     async function Login (){
         const res = await userAPI.authenticateUser(email, password);
         if(!res.erro){
+            console.log('user', res.usuario);
             localStorage.setItem('token', res.token);
             localStorage.setItem('userId', res.usuario.id);
             localStorage.setItem('userName', res.usuario.usuario);
             localStorage.setItem('userImage', res.usuario.foto);
-            console.log('user', res.usuario.id);
             navigate('/');
         }
       }
@@ -83,5 +83,3 @@ const Login = () => {
         </AuthWrapper1>
     );
 };
-
-export default Login;

@@ -4,11 +4,13 @@ import { lazy } from 'react';
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
-// dashboard routing
-const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
+// main routing
+const ListagemVendedores = Loadable(lazy(() => import('views/pages/vendedores')));
 const ListagemProduto = Loadable(lazy(() => import('views/pages/produtos/listagem')));
 const CadastroProduto = Loadable(lazy(() => import('views/pages/produtos/cadastro')));
 const MeusProdutos = Loadable(lazy(() => import('views/pages/produtos/meusProdutos')));
+const CadastroEndereco = Loadable(lazy(() => import('views/pages/endereco/cadastro')));
+const SelecionaEndereco = Loadable(lazy(() => import('views/pages/produtos/selecionaEndereco')));
 
 // utilities routing
 const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
@@ -28,7 +30,7 @@ const MainRoutes = {
     children: [
         {
             path: '/listagem/vendedores',
-            element: <DashboardDefault />
+            element: <ListagemVendedores />
         },
         {
             path: '/listagem/produtos',
@@ -42,6 +44,14 @@ const MainRoutes = {
             path: '/listagem/MeusProdutos',
             element: <MeusProdutos />
         },
+        {
+            path: '/cadastro/endereco',
+            element: <CadastroEndereco />
+        },  
+        {
+            path: '/pedido/selecionaEndereco',
+            element: <SelecionaEndereco />
+        },  
         {
             path: '/utils/util-color',
             element: <UtilsColor />
