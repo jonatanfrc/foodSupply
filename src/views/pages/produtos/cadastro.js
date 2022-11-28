@@ -1,19 +1,14 @@
 import { useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import api from "../../../services/produtos"
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { CircularProgress, Button } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import {useNavigate} from 'react-router-dom';
-
+import Swal from 'sweetalert2'
 import './style/dashboard.css';
 // material-ui
-import { gridSpacing } from 'store/constant';
 
 const ListagemProduto = () => {
     const [isLoading, setLoading] = useState(true);
@@ -31,12 +26,41 @@ const ListagemProduto = () => {
     let navigate = useNavigate();
     
     const registerProdcut = () => {
+
+        setLoading(true);
+
+        if(!sku || !titulo || !descricao || !estoque || !preco || !categoria_id || !unidade_medida_id || !urlFoto){
+            Swal.fire({
+                title: 'Oops!',
+                text: 'Preencha todos campos para cadastrar o produto!',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
+              setLoading(false);
+              return
+        }
+       
+
         api.registerProduct(sku, titulo, descricao, estoque, preco, categoria_id, unidade_medida_id, urlFoto).then((response) =>{
             if(!response.erro){
-                navigate('/listagem/produtos')
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: 'Produto cadastrado com sucesso!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/listagem/meusProdutos')
+                setLoading(false)
             }
-            setLoading(false)
         }).catch((err) =>{
+            Swal.fire({
+                title: 'Oops!',
+                text: 'Algo deu errado!',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
+              
             console.log('err', err)
             setLoading(false);
         });
@@ -76,7 +100,7 @@ const ListagemProduto = () => {
                         <Box
                             component="form"
                             sx={{
-                                '& .MuiTextField-root': { m: 1, width: '50ch' },
+                                '& .MuiTextField-root': { m: 1, width: '35vw', minWidth: '200px' },
                             }}
                             noValidate
                             autoComplete="off"
@@ -129,7 +153,7 @@ const ListagemProduto = () => {
                                     id="outlined-number"
                                     label="Selecione a categoria"
                                     type="select"
-                                    select={categorias}
+                                    select={categorias ? true : false}
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
@@ -162,8 +186,8 @@ const ListagemProduto = () => {
                                 
                             </div>
                             
-                            <div style={{ textAlign:'end' }}>
-                                <Button onClick={() => registerProdcut()} style={{ backgroundColor:'black' }}>Cadastrar</Button>
+                            <div style={{ textAlign:'end', marginTop: 20}}>
+                                <Button variant='outlined' onClick={() => registerProdcut()} style={{ backgroundColor:'blue' }}>Cadastrar</Button>
                             </div>
                             </Box>
                     </Grid>

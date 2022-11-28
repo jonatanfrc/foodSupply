@@ -1,0 +1,23 @@
+.div-fornecedor-option{
+    display: inline-block;
+}
+
+.div2-fornecedor-option{
+    vertical-align: top;
+    margin-left: 15px;
+    display: inline-block;
+}
+
+.img-fornecedor{
+    border-radius: 5px;
+}
+
+.loader{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: -webkit-translate(-50%, -50%);
+    transform: -moz-translate(-50%, -50%);
+    transform: -ms-translate(-50%, -50%);
+}

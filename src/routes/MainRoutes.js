@@ -11,16 +11,15 @@ const CadastroProduto = Loadable(lazy(() => import('views/pages/produtos/cadastr
 const MeusProdutos = Loadable(lazy(() => import('views/pages/produtos/meusProdutos')));
 const CadastroEndereco = Loadable(lazy(() => import('views/pages/endereco/cadastro')));
 const SelecionaEndereco = Loadable(lazy(() => import('views/pages/produtos/selecionaEndereco')));
-
-// utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
-const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
-const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
-
-// sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+const MenuUsuario = Loadable(lazy(() => import('views/pages/usuario/menuUsuario')));
+const RedefinicaoSenha = Loadable(lazy(() => import('views/pages/usuario/redefineSenha')));
+const DefinirNomeVendedor = Loadable(lazy(() => import('views/pages/usuario/defineNomeVendedor')));
+const DefineToken = Loadable(lazy(() => import('views/pages/usuario/defineToken')));
+const MeusPedidos = Loadable(lazy(() => import('views/pages/pedidos/meusPedidos')));
+const MinhasVendas = Loadable(lazy(() => import('views/pages/vendas/minhasVendas')));
+const DefineValorFrete = Loadable(lazy(() => import('views/pages/vendas/defineValorFrete')));
+const DefineInfRastreio = Loadable(lazy(() => import('views/pages/vendas/defineInfRastreio')));
+const InformacoesPedido = Loadable(lazy(() => import('views/pages/pedidos/informacoesPedido')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -53,25 +52,41 @@ const MainRoutes = {
             element: <SelecionaEndereco />
         },  
         {
-            path: '/utils/util-color',
-            element: <UtilsColor />
+            path: '/usuario/configuracoes',
+            element: <MenuUsuario />
+        },  
+        {
+            path: '/usuario/configuracoes/redefinicaoSenha',
+            element: <RedefinicaoSenha />
+        },  
+        {
+            path: '/usuario/configuracoes/defineNomeVendedor',
+            element: <DefinirNomeVendedor />
+        },  
+        {
+            path: '/usuario/configuracoes/defineToken',
+            element: <DefineToken />
+        },  
+        {
+            path: '/listagem/meusPedidos',
+            element: <MeusPedidos />
+        },  
+        {
+            path: '/listagem/meusPedidos/InformacoesPedido',
+            element: <InformacoesPedido />
+        },  
+        {
+            path: '/listagem/minhasVendas',
+            element: <MinhasVendas />
+        },  
+        {
+            path: '/listagem/minhasVendas/defineValorFrete',
+            element: <DefineValorFrete />
         },
         {
-            path: '/utils/util-shadow',
-            element: <UtilsShadow />
+            path: '/listagem/minhasVendas/defineInfRastreio',
+            element: <DefineInfRastreio />
         },
-        {
-            path: '/icons/tabler-icons',
-            element: <UtilsTablerIcons />
-        },
-        {
-            path: '/icons/material-icons',
-            element: <UtilsMaterialIcons />
-        },
-        {
-            path: '/sample-page',
-            element: <SamplePage />
-        }
     ]
 };
 

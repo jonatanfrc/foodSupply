@@ -1,0 +1,18 @@
+.div-fornecedor-option{
+    display: inline-block;
+}
+
+.div2-fornecedor-option{
+    vertical-align: top;
+    margin-left: 15px;
+    display: inline-block;
+}
+
+.img-fornecedor{
+    border-radius: 5px;
+}
+
+.loader{
+    margin-top: 200px;
+    text-align: center;
+}

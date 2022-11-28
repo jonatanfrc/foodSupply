@@ -23,11 +23,11 @@ export default function Login() {
     async function Login (){
         const res = await userAPI.authenticateUser(email, password);
         if(!res.erro){
-            console.log('user', res.usuario);
             localStorage.setItem('token', res.token);
             localStorage.setItem('userId', res.usuario.id);
             localStorage.setItem('userName', res.usuario.usuario);
             localStorage.setItem('userImage', res.usuario.foto);
+            localStorage.setItem('nomeVendedor', res.usuario.nome_vendedor);
             navigate('/');
         }
       }

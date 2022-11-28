@@ -9,31 +9,58 @@ import api from "./api";
       }
     }
 
+    async function getAllSales() {
+      return api.get('vendas/', config)
+         .then((res)=>{
+            if(!res.data.erro) {
+               return res.data;  
+            } else {
+               console.log('err', res);
+            }}
+         );
+      }
 
+   async function putShippingValue(idVenda, valorFrete) {
+      const data = {
+         frete: parseFloat(valorFrete)
+      }
 
-//   async function comprar(idVendedor) {
+      return api.put(`venda/${idVenda}/add_valor_frete`, data, config)
+         .then((res)=>{
+            if(!res.data.erro) {
+               return res.data;  
+            } else {
+               console.log('err', res);
+            }}
+         );
+      }
 
-   
-//    const data = {
-//       "vendedor": idVendedor,
-//       "endereco": 4,
-//       "produtos": [
-//          {
-//             "id": 4,
-//             "quantidade": 100,
-//             "valor": 120.5
-//          }
-//       ]
-//    }
+   async function putShippingInf(idVenda, urlRastreio, codigoRastreio) {
 
-//    return api.get('pedidos/', data, config)
-//       .then((res)=>{
-//          if(!res.data.erro) {
-//             return res.data;  
-//          } else {
-//             console.log('err', res);
-//          }}
-//       );
-   
+      const data = {
+         url_rastreio: urlRastreio,
+         rastreio: codigoRastreio,
+      }
 
-export default {comprar};
+      return api.put(`venda/${idVenda}/enviar`, data, config)
+         .then((res)=>{
+            if(!res.data.erro) {
+               return res.data;  
+            } else {
+               console.log('err', res);
+            }}
+         );
+      }
+
+   async function putRequestDelivered(idVenda) {
+      return api.put(`venda/${idVenda}/entregue`, {}, config)
+         .then((res)=>{
+            if(!res.data.erro) {
+               return res.data;  
+            } else {
+               console.log('err', res);
+            }}
+         );
+      }
+      
+export default {getAllSales, putShippingValue, putShippingInf, putRequestDelivered};

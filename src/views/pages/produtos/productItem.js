@@ -8,7 +8,7 @@ import { CardActionArea, Grid } from '@mui/material';
 import { CartContext } from './context/cart';
 import { Button } from '@mui/material';
 
-const ProductItem = ({ products, idVendedor}) => {
+const ProductItem = ({ products, idVendedor }) => {
   const {
     productsCart = [],
     addProducToCart,
@@ -17,13 +17,6 @@ const ProductItem = ({ products, idVendedor}) => {
   } = useContext(CartContext);
 
   useEffect(() => {
-    // if(!!products){
-
-
-    //   products.forEach((produto, index) =>{
-    //     products.fotos[index] = JSON.parse(produto.fotos[index]);
-    //   })
-    // }
     console.log('prodcts', products);
     console.log('idVendedor', idVendedor);
   }, [products]);
@@ -34,36 +27,45 @@ const ProductItem = ({ products, idVendedor}) => {
       {products.map((item, index) => (
         <div className="cart_box" key={item.id}>
           <Card key={index} sx={{ maxWidth: "100%", marginBottom: '10px' }}>
-                <CardContent>
-                    <div>
-                        <div className='div-fornecedor-option'>
-                            <img className='img-fornecedor' height={65} width={65} src={item.fotos[0].url}/>
-                        </div>
-                        <div className='div2-fornecedor-option'>
-                            <Typography gutterBottom variant="h5" component="div">
-                                {item.titulo}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                            R$ {item.preco}
-                            </Typography>
-                        </div>
+            <CardContent>
+              <div>
+                <div className='div-fornecedor-option'>
+                  <img className='img-fornecedor' height={65} width={65} src={item.fotos[0].url} />
+                </div>
+                <div className='div2-fornecedor-option'>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {item.titulo}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {item.preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+                  </Typography>
+                </div>
 
-                        <div style={{ display: "inline-block"}}>
-                            <div>
-                                <Button onClick={() => addProducToCart(item.id, idVendedor, item.preco, item.fotos[0].url)}>+</Button>
-                            </div>
-                            <div>
-                                <Button onClick={() => removeProductToCart(item.id)}>-</Button>
-                            </div>
-                       
-                        </div>
-                        {/* <div style={{ display: "inline-block"}}>
-                          { productsCart.find(product => product.id == item.id).qtd}
-                        </div> */}
+                {item.estoque > 0 ?
+                  <div style={{ display: "inline-block" }}>
+                    <div>
+                      <Button onClick={() => addProducToCart(item.id, idVendedor, item.preco, item.fotos[0].url)}>+</Button>
                     </div>
-                </CardContent>
-        </Card>
-       
+                    <div>
+                      <Button onClick={() => removeProductToCart(item.id)}>-</Button>
+                    </div>
+                  </div>
+
+                  : <div style={{marginLeft: '100px', marginTop: 30, position: 'absolute', display: 'inline-block'}}>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Produto sem estoque!
+                    </Typography>
+                  </div>}
+
+
+
+
+
+
+              </div>
+            </CardContent>
+          </Card>
+
         </div>
       ))}
     </>

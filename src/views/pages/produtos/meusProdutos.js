@@ -15,6 +15,9 @@ const MeusProdutos = () => {
     useEffect(() => {
         const idUser = localStorage.getItem('userId');
         api.getProdutosVendedor(idUser).then((response) =>{
+            response.retorno.forEach(element => {
+                element.fotos = JSON.parse(element.fotos);
+            });
             setProducts(response.retorno);
             setLoading(false);
         }).catch((err) =>{
@@ -35,8 +38,8 @@ const MeusProdutos = () => {
                         <h3 style={{marginBottom: '10px'}}>Meus Produtos</h3>
                     
                         <Grid item xs={12}>
-                            { products.map(product =>
-                                <Card sx={{ maxWidth: "100%", marginBottom: '10px' }}>
+                            { products.map((product, index) =>
+                                <Card key={index} sx={{ maxWidth: "100%", marginBottom: '10px' }}>
                                     <CardActionArea >
                                         <CardContent>
                                             <div>
@@ -48,7 +51,10 @@ const MeusProdutos = () => {
                                                         {product.titulo}
                                                     </Typography>
                                                     <Typography variant="body2" color="text.secondary">
-                                                        R$ - {product.preco}
+                                                        {product.preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+                                                    </Typography>
+                                                    <Typography variant="body2" color="text.secondary">
+                                                        Total em Estoque: {product.estoque}
                                                     </Typography>
                                                 </div>
                                             </div>

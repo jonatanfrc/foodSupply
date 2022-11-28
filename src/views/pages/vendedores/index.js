@@ -20,13 +20,13 @@ const ListagemVendedores = () => {
 
     useEffect(() => {
         api.getAllSellers().then((response) => {
+            console.log('responsds', response.retorno)
             setSellers(response.retorno);
             setLoading(false);
         }).catch((err) => {
             console.log('err', err)
             setLoading(false);
         });
-        console.log('sellers', sellers);
     }, []);
 
     const goToProducts = (sellerID) => {
@@ -42,38 +42,34 @@ const ListagemVendedores = () => {
                     <CircularProgress />
                 </div>
             ) : sellers.length > 0 ? (
-
                 <>
                     <h3 style={{ marginBottom: '10px' }}>Fornecedores</h3>
 
-
-                    {sellers.map((seller, index) =>
-                        seller.nome_vendedor != null && seller.nome_vendedor != '' && seller.nome_vendedor != undefined ?
-                            <>
-                                <Grid item xs={12} >
-                                    <Card key={index} sx={{ maxWidth: "100%", marginBottom: '10px' }} >
-                                        <CardActionArea onClick={() => goToProducts(seller.id)}>
-                                            <CardContent>
-                                                <div>
-                                                    <div className='div-fornecedor-option'>
-                                                        <img className='img-fornecedor' height={65} width={65} src="https://www.adobe.com/br/express/create/logo/media_110644df1c87d30589ad9857d1410208b6482580c.png?width=400&format=png&optimize=medium" />
-                                                    </div>
-                                                    <div className='div2-fornecedor-option'>
-                                                        <Typography gutterBottom variant="h5" component="div">
-                                                            {seller.nome_vendedor}
-                                                        </Typography>
-                                                        <Typography variant="body2" color="text.secondary">
-                                                            {seller.email}
-                                                        </Typography>
-                                                    </div>
+                    <Grid item xs={12} >
+                        {sellers.map((seller, index) =>
+                            seller.nome_vendedor != null && seller.nome_vendedor != '' && seller.nome_vendedor != undefined ?
+                                <Card key={index} sx={{ maxWidth: "100%", marginBottom: '10px' }} >
+                                    <CardActionArea onClick={() => goToProducts(seller.id)}>
+                                        <CardContent>
+                                            <div>
+                                                <div className='div-fornecedor-option'>
+                                                    <img className='img-fornecedor' height={65} width={65} src={seller.foto} />
                                                 </div>
-                                            </CardContent>
-                                        </CardActionArea>
-                                    </Card>
-                                </Grid>
-                            </>
-                            : <></>
-                    )}
+                                                <div className='div2-fornecedor-option'>
+                                                    <Typography gutterBottom variant="h5" component="div">
+                                                        {seller.nome_vendedor}
+                                                    </Typography>
+                                                    <Typography variant="body2" color="text.secondary">
+                                                        {seller.email}
+                                                    </Typography>
+                                                </div>
+                                            </div>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                                : <div key={index}> </div>
+                        )}
+                    </Grid>
                 </>) : (
                 <div>
                     <p style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center' }}>Não há fornecedores disponíveis!</p>

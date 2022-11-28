@@ -90,7 +90,7 @@ const NotificationSection = () => {
 
     return (
         <>
-            <Box
+            {/* <Box
                 sx={{
                     ml: 2,
                     mr: 3,
@@ -122,8 +122,8 @@ const NotificationSection = () => {
                         <IconBell stroke={1.5} size="1.3rem" />
                     </Avatar>
                 </ButtonBase>
-            </Box>
-            <Popper
+            </Box> */}
+            {/* <Popper
                 placement={matchesXs ? 'bottom' : 'bottom-end'}
                 open={open}
                 anchorEl={anchorRef.current}
@@ -213,7 +213,7 @@ const NotificationSection = () => {
                         </Paper>
                     </Transitions>
                 )}
-            </Popper>
+            </Popper> */}
         </>
     );
 };

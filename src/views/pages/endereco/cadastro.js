@@ -4,17 +4,13 @@ import api from "../../../services/usuario"
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
-import FormLabel from '@mui/material/FormLabel';
-import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { CircularProgress, Button } from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
-
+import Swal from 'sweetalert2'
 import './style/dashboard.css';
 // material-ui
-import { gridSpacing } from 'store/constant';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
@@ -29,7 +25,20 @@ const CadastroEndereco = () => {
     const [principal, setPrincipal] = useState(false);
     let navigate = useNavigate();
 
-    const registerProdcut = () => {
+    const registerAdress = () => {
+
+        if(!cep || !uf || !cidade || !bairro || !endereco || !numero){
+            Swal.fire({
+                title: 'Oops!',
+                text: 'Preencha todos campos para cadastrar o endereço!',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
+            
+              return
+        }
+
+
         api.registerAdress(cep, uf, cidade, bairro, endereco, numero, principal).then((response) => {
             if (!response.erro) {
                 navigate('/listagem/produtos')
@@ -40,24 +49,6 @@ const CadastroEndereco = () => {
             setLoading(false);
         });
     };
-
-    useEffect(() => {
-        // api.getCategories().then((response) =>{
-        //     setCategorias(response.retorno)
-        //     setLoading(false);
-        // }).catch((err) =>{
-        //     console.log('err', err)
-        //     setLoading(false);
-        // });
-
-        // api.getUnidadesMedida().then((response) =>{
-        //     setUnidadeMedida(response.retorno)
-        //     setLoading(false);
-        // }).catch((err) =>{
-        //     console.log('err', err)
-        //     setLoading(false);
-        // });
-    }, []);
 
     return (
         <>
@@ -138,7 +129,7 @@ const CadastroEndereco = () => {
 
                             </div>
                             <div>
-                                <Button onClick={() => registerProdcut()} style={{ backgroundColor: 'purple' }}>Cadastrar</Button>
+                                <Button onClick={() => registerAdress()} style={{ backgroundColor: 'purple' }}>Cadastrar</Button>
                             </div>
                         </Box>
                     </Grid>

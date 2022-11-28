@@ -43,7 +43,6 @@ import api from "./api";
       }
 
    async function getUserAdress() {
-      console.log('config', config);
       return api.get('usuarios/listar_enderecos', config)
          .then((res)=>{
             if(!res.data.erro) {
@@ -54,5 +53,37 @@ import api from "./api";
          );
       }
 
+   async function putChangePassword(password) {
 
- export default {getAllAdress, registerAdress, getUserAdress};
+      const data = {
+         senha: password
+      }
+
+      return api.put('usuarios/alterar_senha', data, config)
+         .then((res)=>{
+            if(!res.data.erro) {
+               return res.data;  
+            } else {
+               console.log('err', res);
+            }}
+         );
+      }
+
+      async function putUserToken(token) {
+
+         const data = {
+            'token': token
+         }
+
+         return api.put('usuarios/salvar_token_mercado_pago', data, config)
+            .then((res)=>{
+               if(!res.data.erro) {
+                  return res.data;  
+               } else {
+                  console.log('err', res);
+               }}
+            );
+         }
+
+
+ export default {getAllAdress, registerAdress, getUserAdress, putChangePassword, putUserToken};

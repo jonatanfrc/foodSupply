@@ -1,8 +1,8 @@
 // assets
-import { IconDashboard, IconUser, IconShoppingCart, IconShoppingCartPlus } from '@tabler/icons';
+import { IconDashboard, IconUser, IconShoppingCart, IconShoppingCartPlus, IconSquarePlus } from '@tabler/icons';
 
 // constant
-const icons = { IconDashboard, IconUser, IconShoppingCart, IconShoppingCartPlus};
+const icons = { IconDashboard, IconUser, IconShoppingCart, IconShoppingCartPlus, IconSquarePlus};
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -16,17 +16,17 @@ const cadastros = {
             title: 'Cadastre seu produto',
             type: 'item',
             url: '/cadastro/produto',
-            icon: icons.IconShoppingCartPlus,
-            breadcrumbs: false
-        },
-        {
-            id: 'cadastroEndereco',
-            title: 'Cadastro de Endereço',
-            type: 'item',
-            url: '/cadastro/endereco',
-            icon: icons.IconShoppingCart,
+            icon: icons.IconSquarePlus,
             breadcrumbs: false
         }
+        // {
+        //     id: 'cadastroEndereco',
+        //     title: 'Cadastro de Endereço',
+        //     type: 'item',
+        //     url: '/cadastro/endereco',
+        //     icon: icons.IconSquarePlus,
+        //     breadcrumbs: false
+        // }
     ]
 };
 

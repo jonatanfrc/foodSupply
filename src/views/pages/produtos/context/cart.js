@@ -8,29 +8,15 @@ export default function CartProvider({ children }) {
   //{id: 1, qtd:1}
 
   function addProducToCart(id, idVendedor, preco, imagem) {
-    console.log('imagem', imagem);
     const copyProductsCart = [...productsCart];
 
     const item = copyProductsCart.find((product) => product.id === id);
 
-    const validaVendedor = true;
-    
-    if(copyProductsCart.length > 1){
-      validaVendedor = copyProductsCart.find(product => {
-        return true ? product.idVendedor == idVendedor : false;
-      });
-    }
-
-    console.log('validaVendedor', validaVendedor)
-
-    console.log('item', item);
     if (!item) {
       copyProductsCart.push({ id: id, idVendedor: idVendedor, qtd: 1, value: preco, foto: imagem });
-    } else if(validaVendedor) {
+    } else{
       item.qtd = item.qtd + 1;
     }
-
-    console.log('carrinh', copyProductsCart)
 
     setProductsCart(copyProductsCart);
     localStorage.setItem('cart', copyProductsCart)

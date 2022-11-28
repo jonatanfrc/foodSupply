@@ -16,7 +16,6 @@ const ListagemProduto = () => {
     const [isLoading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
     const [price, setPrice] = useState(0);
-    const [cart, setCart] = useState([]);
     const {
         productsCart = [],
         addProducToCart,
@@ -31,42 +30,23 @@ const ListagemProduto = () => {
         navigate('/pedido/selecionaEndereco')
     }
 
-    // const handleClick = (item) => {
-    //     if (cart.indexOf(item) !== -1) return;
-    //     setCart([...cart, item]);
-    // };
-
-    /*
-        {
-            "id": 3,
-            "sku": "ProdTeste1",
-            "titulo": "Produto de teste 1",
-            "descricao": "Este é o teste de descrição do produto, pode dar tudo errado ou tudo certo, vai la saber",
-            "preco": 140.5,
-            "estoque": 100,
-            "fotos": "[
-                {\"url\":\"https://talcha.vteximg.com.br/arquivos/ids/170030-1000-1000/teste.jpg?v=637685222639430000\",\"ordem\":0},
-                {\"url\":\"https://static3.tcdn.com.br/img/img_prod/99941/produto_teste_auaha_24522_1_f816ad73890b2db46e6e460c44ae5d22.png\",\"ordem\":1}
-            ]",
-            "data_hora_cadastro": "2022-05-13T05:18:14.000Z",
-            "categoria_id": 1,
-            "categoria_nome": "Carnes",
-            "unidade_medida_id": 2,
-            "unidade_medida_sigla": "G",
-            "unidade_medida_nome": "Gramas",
-            "vendedor_id": 9,
-            "nome_vendedor": "Vitor Store"
-        }
-    */
-
     useEffect(() => {
-        api.getProdutosVendedor(props.state).then((response) => {
-            setProducts(response.retorno);
-            setLoading(false);
-        }).catch((err) => {
-            console.log('err', err)
-            setLoading(false);
-        });
+        if(props.state){
+            api.getProdutosVendedor(props.state).then((response) => {
+
+                response.retorno.forEach(element => {
+                    element.fotos = JSON.parse(element.fotos);
+                });
+
+                setProducts(response.retorno);
+                setLoading(false);
+            }).catch((err) => {
+                console.log('err', err)
+                setLoading(false);
+            });
+        }else{
+            navigate('/listagem/vendedores')
+        }
     }, []);
 
     useEffect(() => {
