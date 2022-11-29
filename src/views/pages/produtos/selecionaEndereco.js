@@ -136,7 +136,7 @@ const SelecionaEndereco = () => {
                                 </TextField>
                             </div>
                             <div>
-                                <Button onClick={() => confirmRequest()} style={{ backgroundColor: 'purple' }}>Fazer pedido</Button>
+                                <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => confirmRequest()}>Fazer pedido</Button>
                             </div>
                         </Box>
                     </Grid>

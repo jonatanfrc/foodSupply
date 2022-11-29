@@ -77,10 +77,10 @@ const ListagemProduto = () => {
                             <span>R$ {price == undefined ? 0 : price}</span>
                             <div style={{ display: '-webkit-box'}}>
                                 <div>
-                                    <Button onClick={() => Buy()} style={{ backgroundColor: '#673ab7', color: 'White' }}>Comprar</Button>
+                                    <Button onClick={() => Buy()}>Comprar</Button>
                                 </div>
                                 <div>
-                                    <Button onClick={() => clearCart()} style={{ backgroundColor: '#673ab7', color: 'White', marginLeft: 10}}>Limpar carrinho</Button>
+                                    <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => clearCart()}>Limpar carrinho</Button>
                                 </div>
                             </div>
                         </div>

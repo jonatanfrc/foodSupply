@@ -187,7 +187,7 @@ const ListagemProduto = () => {
                             </div>
                             
                             <div style={{ textAlign:'end', marginTop: 20}}>
-                                <Button variant='outlined' onClick={() => registerProdcut()} style={{ backgroundColor:'blue' }}>Cadastrar</Button>
+                                <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => registerProdcut()}>Cadastrar</Button>
                             </div>
                             </Box>
                     </Grid>

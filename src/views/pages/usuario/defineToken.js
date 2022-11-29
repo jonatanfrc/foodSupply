@@ -5,13 +5,9 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { CircularProgress, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
-
+import Swal from 'sweetalert2'
 import './style/dashboard.css';
 // material-ui
-import { gridSpacing } from 'store/constant';
-
-// ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const DefineToken = () => {
     const [isLoading, setLoading] = useState(false);
@@ -22,9 +18,36 @@ const DefineToken = () => {
     const definirToken = () => {
         setLoading(true);
 
+        if(!token){
+            Swal.fire({
+                title: 'Oops!',
+                text: 'Preencha o campo para cadastrar o token!',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+            setLoading(false);
+
+            return
+        }
+
         api.putUserToken(token).then((response) =>{
             console.log('response', response);
-            alert(response.msg)
+
+            if(!response.erro){
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: "Token cadastrado!",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        navigate('/usuario/configuracoes');
+                    }
+                })
+            }
+
             setLoading(false);
         }).catch((err) =>{
             console.log('err', err)

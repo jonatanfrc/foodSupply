@@ -88,7 +88,7 @@ const DefineValorFrete = () => {
                                 />
                             </div>
                             <div>
-                                <Button onClick={() => putValorFrete()} style={{ backgroundColor: 'purple' }}>Enviar valor de frete</Button>
+                                <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => putValorFrete()}>Enviar valor de frete</Button>
                             </div>
                         </Box>
                     </Grid>

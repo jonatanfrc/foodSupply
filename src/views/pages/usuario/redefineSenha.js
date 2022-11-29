@@ -73,7 +73,7 @@ const CadastroEndereco = () => {
                                 />
                             </div>
                             <div>
-                                <Button onClick={() => changePassword()} style={{ backgroundColor: 'purple' }}>Alterar Senha</Button>
+                                <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => changePassword()}>Alterar Senha</Button>
                             </div>
                         </Box>
                     </Grid>

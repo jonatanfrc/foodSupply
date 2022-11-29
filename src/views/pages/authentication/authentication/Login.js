@@ -40,7 +40,7 @@ export default function Login() {
                         <div className="wrap-login">
                         <form className="login-form">
                         <div className="login-form-title">
-                            <img className="logo-company" src={metaLogo}/>
+                            <img className="logo-company" height={250} src={metaLogo}/>
                         </div>
 
 

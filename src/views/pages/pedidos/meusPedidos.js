@@ -11,8 +11,10 @@ const MeusPedidos = () => {
     const [pedidos, setPedidos] = useState([]);
     let navigate = useNavigate();
 
-    const goToInfPedido = (idPedido) => {
+    const goToInfPedido = (idPedido, status) => {
+        if(status !== "Aguardando Comprador"){
             navigate('/listagem/meusPedidos/informacoesPedido', { state: idPedido })
+        }
     }
 
     const aceitarFrete = (pedidoID) => {
@@ -93,7 +95,7 @@ const MeusPedidos = () => {
                     <Grid item xs={12}>
                         {pedidos.map((pedido, index) =>
                             <Card key={index} sx={{ maxWidth: "100%", marginBottom: '10px' }}>
-                                <CardActionArea onClick={() => goToInfPedido(pedido.id)}>
+                                <CardActionArea onClick={() => goToInfPedido(pedido.id, pedido.descricao_status)}>
                                     <CardContent >
                                         <div style={{ display: 'flex' }}>
                                             <div className='div2-fornecedor-option'>
@@ -112,10 +114,10 @@ const MeusPedidos = () => {
                                                 </div>
                                                 <div style={{ display: 'flex' }}>
                                                     <div>
-                                                        <Button onClick={() => aceitarFrete(pedido.id)} style={{ backgroundColor: 'purple' }}>Aceitar Frete</Button>
+                                                        <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => aceitarFrete(pedido.id)}>Aceitar Frete</Button>
                                                     </div>
                                                     <div style={{ marginLeft: '20px' }}>
-                                                        <Button onClick={() => negarFrete(pedido.id)} style={{ backgroundColor: 'purple' }}>Negar Frete</Button>
+                                                        <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => negarFrete(pedido.id)}>Negar Frete</Button>
                                                     </div>
                                                 </div>
                                             </div>

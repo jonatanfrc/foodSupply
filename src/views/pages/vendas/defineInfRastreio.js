@@ -95,7 +95,7 @@ const DefineInfRastreio = () => {
                                 />
                             </div>
                             <div>
-                                <Button onClick={() => putInfRastreio()} style={{ backgroundColor: 'purple' }}>Enviar informações de rastreio</Button>
+                                <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => putInfRastreio()}>Enviar informações de rastreio</Button>
                             </div>
                         </Box>
                     </Grid>

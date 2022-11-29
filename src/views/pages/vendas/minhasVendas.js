@@ -29,13 +29,17 @@ const MinhasVendas = () => {
             api.putRequestDelivered(idPedido).then((response) =>{
                 if(!response.error){
                     Swal.fire({
-                        icon: 'success',
                         title: 'Sucesso!',
-                        text: 'Pedido definido como entregue!',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    navigate('/listagem/minhasVendas')
+                        text: "Pedido definido como entregue!",
+                        icon: 'sucess',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                    })
                 }
                 console.log('response enviar', response);
                 setLoading(false);
@@ -92,7 +96,7 @@ const MinhasVendas = () => {
                                                 </div>
                                                 <div style={ pedido.descricao_status == "Pedido Enviado" ? { display: 'flex', marginLeft: 100 } : { display: 'none' }}>
                                                     <div>
-                                                        <Button onClick={() => pedidoEntregue(pedido.id, pedido.descricao_status)} style={{ backgroundColor: 'purple' }}>Pedido entregue</Button>
+                                                        <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => pedidoEntregue(pedido.id, pedido.descricao_status)}>Pedido entregue</Button>
                                                     </div>
                                                 </div>
                                             </div>

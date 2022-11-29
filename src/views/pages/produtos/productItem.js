@@ -44,10 +44,10 @@ const ProductItem = ({ products, idVendedor }) => {
                 {item.estoque > 0 ?
                   <div style={{ display: "inline-block" }}>
                     <div>
-                      <Button onClick={() => addProducToCart(item.id, idVendedor, item.preco, item.fotos[0].url)}>+</Button>
+                      <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => addProducToCart(item.id, idVendedor, item.preco, item.fotos[0].url)}>+</Button>
                     </div>
                     <div>
-                      <Button onClick={() => removeProductToCart(item.id)}>-</Button>
+                      <Button variant="contained" style={{backgroundColor: '#673ab7'}} onClick={() => removeProductToCart(item.id)}>-</Button>
                     </div>
                   </div>
 
